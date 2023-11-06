@@ -1,4 +1,7 @@
-package ru.praktikum.model;
+package ru.praktikum.model.user;
+
+import ru.praktikum.model.user.CreateUserDto;
+import ru.praktikum.model.user.LoginUserDto;
 
 public class UserMapper {
 

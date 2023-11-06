@@ -6,12 +6,12 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class UserTest extends BaseTest {
+public class CreateUserTest extends BaseTest {
 
 
     @Before
     public void setUp() {
-        userDto = data.getUserData();
+        userDto = userData.getUserData();
     }
 
     @After

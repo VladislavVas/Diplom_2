@@ -11,13 +11,13 @@ public class LogInUserTest extends BaseTest {
 
     @Before
     public void setUp() {
-        userDto = data.getUserData();
-        loginUserDtoDto = mapper.toLoginUserDto(userDto);
+        userDto = userData.getUserData();
+        loginUserDto = mapper.toLoginUserDto(userDto);
     }
 
     @After
     public void clear() {
-        userClient.deleteUser(loginUserDtoDto);
+        userClient.deleteUser(loginUserDto);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class LogInUserTest extends BaseTest {
     @Description("Successful login of a user.")
     public void UserLoginSuccessfulTest() {
         userClient.createUser(userDto);
-        var response = userClient.loginUser(loginUserDtoDto);
+        var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(200)
                 .body("success", equalTo(true))
@@ -37,7 +37,7 @@ public class LogInUserTest extends BaseTest {
     @DisplayName("Log in user with incorrect data.")
     @Description("It is impossible to log in with an incorrect email and password")
     public void LoginUserWithIncorrectData() {
-        var response = userClient.loginUser(loginUserDtoDto);
+        var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(401)
                 .body("success", equalTo(false))
@@ -48,8 +48,8 @@ public class LogInUserTest extends BaseTest {
     @DisplayName("Log in user with incorrect email.")
     @Description("It is impossible to log in with an incorrect email")
     public void LoginUserWithIncorrectEmail() {
-        loginUserDtoDto.setEmail("incorrect_email@qwerty.com");
-        var response = userClient.loginUser(loginUserDtoDto);
+        loginUserDto.setEmail("incorrect_email@qwerty.com");
+        var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(401)
                 .body("success", equalTo(false))
@@ -60,8 +60,8 @@ public class LogInUserTest extends BaseTest {
     @DisplayName("Log in user with invalid email.")
     @Description("The service should return error 401, not 5xx")
     public void LoginUserWithInvalidEmail() {
-        loginUserDtoDto.setEmail("invalid_email");
-        var response = userClient.loginUser(loginUserDtoDto);
+        loginUserDto.setEmail("invalid_email");
+        var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(401)
                 .body("success", equalTo(false))
@@ -72,11 +72,12 @@ public class LogInUserTest extends BaseTest {
     @DisplayName("Log in user with incorrect email.")
     @Description("It is impossible to log in with an incorrect email")
     public void LoginUserWithIncorrectPassword() {
-        loginUserDtoDto.setPassword("incorrect_password");
-        var response = userClient.loginUser(loginUserDtoDto);
+        loginUserDto.setPassword("incorrect_password");
+        var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(401)
                 .body("success", equalTo(false))
                 .body("message", equalTo(INCORRECT_FIELDS));
     }
+    
 }

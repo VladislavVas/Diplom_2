@@ -1,4 +1,4 @@
-package ru.praktikum.model;
+package ru.praktikum.model.user;
 
 
 import lombok.AllArgsConstructor;

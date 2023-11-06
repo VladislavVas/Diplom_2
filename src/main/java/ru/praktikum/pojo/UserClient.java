@@ -2,8 +2,8 @@ package ru.praktikum.pojo;
 
 import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
-import ru.praktikum.model.CreateUserDto;
-import ru.praktikum.model.LoginUserDto;
+import ru.praktikum.model.user.CreateUserDto;
+import ru.praktikum.model.user.LoginUserDto;
 
 import static ru.praktikum.pojo.Constant.*;
 
@@ -19,13 +19,24 @@ public class UserClient extends BaseClient {
         return postRequest(BASE_URL + LOGIN_USER, loginUserDto);
     }
 
-    @Step("Delete request. Delete user")
+    @Step("DELETE request. Delete user")
     public ValidatableResponse deleteUser(LoginUserDto loginUserDto) {
         return deleteRequest(BASE_URL + UPDATE_USER, getToken(loginUserDto));
     }
 
+    @Step("PATCH request. Update user data with token.")
+    public ValidatableResponse updateUser(LoginUserDto loginUserDto, CreateUserDto updateData) {
+        return patchRequest(BASE_URL + UPDATE_USER, getToken(loginUserDto), updateData);
+    }
+
+    @Step("PATCH request. Update user data without token.")
+    public ValidatableResponse updateUser(CreateUserDto userDto) {
+        return patchRequest(BASE_URL + UPDATE_USER, userDto);
+    }
+
+
     @Step("Get authorization token")
-    private String getToken(LoginUserDto loginUserDto) {
+    public String getToken(LoginUserDto loginUserDto) {
         return loginUser(loginUserDto)
                 .extract()
                 .body()
