@@ -44,7 +44,7 @@ public class UpdateUserTest extends BaseTest {
         var response = userClient.updateUser(userDto);
         response.assertThat().statusCode(401)
                 .body("success", equalTo(false))
-                .body("message", equalTo("You should be authorised"));
+                .body("message", equalTo(UNAUTHORIZED));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class UpdateUserTest extends BaseTest {
         var response = userClient.updateUser(userDto);
         response.assertThat().statusCode(401)
                 .body("success", equalTo(false))
-                .body("message", equalTo("You should be authorised"));
+                .body("message", equalTo(UNAUTHORIZED));
     }
 
 

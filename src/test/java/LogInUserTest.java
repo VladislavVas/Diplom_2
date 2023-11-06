@@ -79,5 +79,5 @@ public class LogInUserTest extends BaseTest {
                 .body("success", equalTo(false))
                 .body("message", equalTo(INCORRECT_FIELDS));
     }
-    
+
 }

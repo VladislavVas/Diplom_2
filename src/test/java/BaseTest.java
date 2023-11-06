@@ -11,6 +11,7 @@ public class BaseTest {
     protected static final String ALREADY_EXISTS = "User already exists";
     protected static final String INCORRECT_FIELDS = "email or password are incorrect";
     protected static final String NO_INGREDIENT = "Ingredient ids must be provided";
+    protected static final String UNAUTHORIZED = "You should be authorised";
 
 
     protected final UserClient userClient = new UserClient();

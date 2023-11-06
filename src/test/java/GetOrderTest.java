@@ -30,7 +30,7 @@ public class GetOrderTest extends BaseTest {
         var response = orderClient.getOrder("");
         response.assertThat().statusCode(401)
                 .body("success", equalTo(false))
-                .body("message", equalTo("You should be authorised"));
+                .body("message", equalTo(UNAUTHORIZED));
     }
     @Test
     @DisplayName("Getting a list of orders by an authorized user.")
