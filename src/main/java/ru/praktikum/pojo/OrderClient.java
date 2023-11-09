@@ -23,10 +23,6 @@ public class OrderClient extends BaseClient {
         return getRequest(BASE_URL + ORDERS, token);
     }
 
-//    @Step("GET request. Get ingredients info.")
-//    public ValidatableResponse getIngredient() {
-//        return getRequest(BASE_URL + INGREDIENTS);
-//    }
 
     @Step
     public String getIngredientId(int i) {

@@ -5,8 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.praktikum.model.order.IngredientListDto;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.emptyArray;
 
 public class GetOrderTest extends BaseTest {
 
@@ -32,6 +32,7 @@ public class GetOrderTest extends BaseTest {
                 .body("success", equalTo(false))
                 .body("message", equalTo(UNAUTHORIZED));
     }
+
     @Test
     @DisplayName("Getting a list of orders by an authorized user.")
     @Description("The authorized user successfully receives the list of orders.")
@@ -41,7 +42,7 @@ public class GetOrderTest extends BaseTest {
         var response = orderClient.getOrder(token);
         response.assertThat().statusCode(200)
                 .body("success", equalTo(true))
-                .body("orders", notNullValue());
+                .body("orders", not(emptyArray()));
     }
 
 }

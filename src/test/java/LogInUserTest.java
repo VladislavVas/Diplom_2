@@ -23,7 +23,7 @@ public class LogInUserTest extends BaseTest {
     @Test
     @DisplayName("Log in user with valid data.")
     @Description("Successful login of a user.")
-    public void UserLoginSuccessfulTest() {
+    public void userLoginSuccessfulTest() {
         userClient.createUser(userDto);
         var response = userClient.loginUser(loginUserDto);
         response.assertThat()
@@ -36,7 +36,7 @@ public class LogInUserTest extends BaseTest {
     @Test
     @DisplayName("Log in user with incorrect data.")
     @Description("It is impossible to log in with an incorrect email and password")
-    public void LoginUserWithIncorrectData() {
+    public void loginUserWithIncorrectData() {
         var response = userClient.loginUser(loginUserDto);
         response.assertThat()
                 .statusCode(401)
@@ -47,7 +47,7 @@ public class LogInUserTest extends BaseTest {
     @Test
     @DisplayName("Log in user with incorrect email.")
     @Description("It is impossible to log in with an incorrect email")
-    public void LoginUserWithIncorrectEmail() {
+    public void loginUserWithIncorrectEmail() {
         loginUserDto.setEmail("incorrect_email@qwerty.com");
         var response = userClient.loginUser(loginUserDto);
         response.assertThat()
@@ -59,7 +59,7 @@ public class LogInUserTest extends BaseTest {
     @Test
     @DisplayName("Log in user with invalid email.")
     @Description("The service should return error 401, not 5xx")
-    public void LoginUserWithInvalidEmail() {
+    public void loginUserWithInvalidEmail() {
         loginUserDto.setEmail("invalid_email");
         var response = userClient.loginUser(loginUserDto);
         response.assertThat()
@@ -71,7 +71,7 @@ public class LogInUserTest extends BaseTest {
     @Test
     @DisplayName("Log in user with incorrect email.")
     @Description("It is impossible to log in with an incorrect email")
-    public void LoginUserWithIncorrectPassword() {
+    public void loginUserWithIncorrectPassword() {
         loginUserDto.setPassword("incorrect_password");
         var response = userClient.loginUser(loginUserDto);
         response.assertThat()

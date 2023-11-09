@@ -65,5 +65,4 @@ public class CreateOrderTest extends BaseTest {
                 .body("success", equalTo(true));
     }
 
-
 }
